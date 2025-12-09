@@ -1,0 +1,297 @@
+/* custom.css - Clean xaringan styling with header/footer */
+
+/* ===== Base Slide Styles ===== */
+.remark-slide-content {
+  background-color: #FFFFFF;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 24px;
+  color: #000000;
+  padding: 90px 30px 90px 30px;
+}
+
+/* ===== Title Slide ===== */
+.title-slide {
+  background-color: #FFFFFF;
+  padding: 90px 60px 90px 60px;
+}
+
+.title-slide h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #000000;
+}
+
+.title-slide h2 {
+  font-size: 24px;
+  color: #4B5563;
+  margin-bottom: 32px;
+  font-weight: normal;
+}
+
+.title-slide h3 {
+  font-size: 18px;
+  color: #4B5563;
+  font-weight: normal;
+  line-height: 1.6;
+}
+
+/* Hide slide number on title slide */
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+/* ===== Regular Content Headers ===== */
+h1 {
+  color: #000000;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+h2 {
+  color: #000000;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+h3 {
+  color: #000000;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* ===== Custom Header ===== */
+.custom-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.custom-header .header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-header .header-left img {
+  height: 28px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-header .header-right {
+  font-size: 14px;
+  color: #4B5563;
+  font-weight: 500;
+}
+
+/* ===== Custom Footer ===== */
+.custom-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: #F9FAFB;
+  border-top: 1px solid #E5E7EB;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.custom-footer .footer-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #4B5563;
+  float: left;
+}
+
+.custom-footer .footer-left img {
+  height: 20px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-footer .footer-left span {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.custom-footer .footer-center {
+  font-size: 12px;
+  color: #4B5563;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.custom-footer .footer-right {
+  font-size: 12px;
+  color: #4B5563;
+  font-weight: 500;
+  float: right;
+}
+
+/* Hide default remark slide number */
+.remark-slide-number {
+  display: none;
+}
+
+/* ===== Code Blocks - Only style code input, not R output ===== */
+.remark-code-line {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Style only remark code blocks (code input like Python) */
+.remark-code {
+  display: block;
+  padding: 20px;
+  background-color: #1F2937;
+  color: #F3F4F6;
+  border-radius: 8px;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 16px;
+  overflow-x: auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Inline code */
+.remark-inline-code {
+  background-color: #F3F4F6;
+  color: #1F2937;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 90%;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* Don't override R output or other pre/code elements */
+pre:not(.remark-code) {
+  font-family: 'Courier New', monospace;
+}
+
+code:not(.remark-code):not(.remark-inline-code) {
+  font-family: 'Courier New', monospace;
+}
+
+/* ===== Lists ===== */
+ul, ol {
+  line-height: 1.8;
+  margin-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* ===== Links ===== */
+a {
+  color: #2563EB;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Tables ===== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+th, td {
+  border: 1px solid #E5E7EB;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #F9FAFB;
+  font-weight: 600;
+}
+
+/* ===== Two Column Layout ===== */
+.pull-left {
+  float: left;
+  width: 47%;
+}
+
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+/* ===== Utility Classes ===== */
+.center {
+  text-align: center;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.large {
+  font-size: 130%;
+}
+
+.small {
+  font-size: 80%;
+}
+
+/* ===== Images ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Blockquote ===== */
+blockquote {
+  border-left: 4px solid #E5E7EB;
+  padding-left: 1em;
+  margin-left: 0;
+  color: #4B5563;
+  font-style: italic;
+}
+
+/* ===== Inverse Slides (Optional) ===== */
+.inverse {
+  background-color: #1F2937;
+  color: #FFFFFF;
+}
+
+.inverse h1, 
+.inverse h2, 
+.inverse h3 {
+  color: #FFFFFF;
+}
+
+.inverse .custom-header {
+  background-color: #1F2937;
+  border-bottom-color: #374151;
+}
+
+.inverse .custom-footer {
+  background-color: #111827;
+  border-top-color: #374151;
+}

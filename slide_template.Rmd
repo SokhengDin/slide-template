@@ -1,0 +1,133 @@
+---
+title: "Breast Cancer - Risk Analysis"
+author: "DIN Sokheng, RA Veasna"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "styles/custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: "github"
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+    seal: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+layout: true
+
+<div class="custom-header">
+  <div class="header-left">
+    <img src="assets/images/ensiie.png" alt="ENSIIE">
+  </div>
+  <div class="header-right">
+    Breast Cancer - Risk Analysis
+  </div>
+</div>
+
+<div class="custom-footer">
+  <div class="footer-left">
+    <span>Project Modelisation en R</span>
+  </div>
+  <div class="footer-center">
+    DIN Sokheng, RA Veasna
+  </div>
+  <div class="footer-right">
+    <span class="slide-number"></span>
+  </div>
+</div>
+
+---
+
+class: title-slide, center, middle
+
+# Breast Cancer
+## Risk Analysis
+
+### DIN Sokheng, RA Veasna
+### `r Sys.Date()`
+
+---
+
+# Introduction
+
+- Overview of breast cancer statistics
+- Risk factors and prevention  
+- Data analysis methodology
+- Key findings and conclusions
+
+---
+
+# Data Analysis
+
+## Methods
+
+- Statistical modeling approaches
+- Machine learning techniques
+- Visualization strategies
+
+$$\mathbb{E}(Z_{n}|\mathcal{G}_{k}) = Z_{k}$$
+
+---
+
+# Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+---
+
+# Slide with Plot
+
+```{r pressure, fig.height=5}
+plot(pressure, main = "Pressure vs Temperature", 
+     xlab = "Temperature", ylab = "Pressure",
+     col = "steelblue", pch = 19)
+```
+
+---
+
+# Two Columns Example
+
+.pull-left[
+## Left Side
+
+- Point 1
+- Point 2
+- Point 3
+]
+
+.pull-right[
+## Right Side
+
+- Point A
+- Point B  
+- Point C
+]
+
+---
+
+# Code Example
+
+```python
+def calculate_risk(age, family_history):
+    base_risk = 0.125
+    if age > 50:
+        base_risk *= 1.5
+    if family_history:
+        base_risk *= 2.0
+    return base_risk
+```
+
+---
+layout: false
+class: center, middle
+
+# Questions?
+
+Thank you for your attention!
