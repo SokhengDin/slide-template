@@ -4,7 +4,7 @@
 .remark-slide-content {
   background-color: #FFFFFF;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  font-size: 20px;  /* Reduced from 24px */
+  font-size: 20px;
   color: #000000;
   padding: 90px 30px 90px 30px;
 }
@@ -36,7 +36,6 @@
   line-height: 1.6;
 }
 
-/* Hide slide number on title slide */
 .title-slide .remark-slide-number {
   display: none;
 }
@@ -44,7 +43,7 @@
 /* ===== Regular Content Headers ===== */
 h1 {
   color: #000000;
-  font-size: 42px;  /* Reduced from 48px */
+  font-size: 42px;
   font-weight: bold;
   margin-bottom: 0.5em;
   margin-top: 0;
@@ -52,14 +51,14 @@ h1 {
 
 h2 {
   color: #000000;
-  font-size: 32px;  /* Reduced from 36px */
+  font-size: 32px;
   font-weight: 600;
   margin-top: 0.5em;
 }
 
 h3 {
   color: #000000;
-  font-size: 24px;  /* Reduced from 28px */
+  font-size: 24px;
   font-weight: 600;
   margin-top: 0.3em;
 }
@@ -89,8 +88,6 @@ h3 {
 .custom-header .header-left img {
   height: 28px;
   width: auto;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .custom-header .header-right {
@@ -116,24 +113,8 @@ h3 {
 }
 
 .custom-footer .footer-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 12px;
   color: #4B5563;
-  float: left;
-}
-
-.custom-footer .footer-left img {
-  height: 20px;
-  width: auto;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.custom-footer .footer-left span {
-  margin-left: 4px;
-  vertical-align: middle;
 }
 
 .custom-footer .footer-center {
@@ -148,50 +129,37 @@ h3 {
   font-size: 12px;
   color: #4B5563;
   font-weight: 500;
-  float: right;
 }
 
-/* Hide default remark slide number */
 .remark-slide-number {
   display: none;
 }
 
-/* ===== Code Blocks - Only style code input, not R output ===== */
+/* ===== Code Blocks ===== */
 .remark-code-line {
-  font-size: 14px;  /* Reduced from 18px */
+  font-size: 14px;
   line-height: 1.4;
 }
 
-/* Style only remark code blocks (code input like Python) */
 .remark-code {
   display: block;
-  padding: 15px;  /* Reduced from 20px */
+  padding: 15px;
   background-color: #1F2937;
   color: #F3F4F6;
   border-radius: 6px;
   font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-  font-size: 13px;  /* Reduced from 16px */
+  font-size: 13px;
   overflow-x: auto;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Inline code */
 .remark-inline-code {
   background-color: #F3F4F6;
   color: #1F2937;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 85%;  /* Reduced from 90% */
+  font-size: 85%;
   font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-}
-
-/* Don't override R output or other pre/code elements */
-pre:not(.remark-code) {
-  font-family: 'Courier New', monospace;
-}
-
-code:not(.remark-code):not(.remark-inline-code) {
-  font-family: 'Courier New', monospace;
 }
 
 /* ===== Lists ===== */
@@ -244,21 +212,10 @@ th {
 }
 
 /* ===== Utility Classes ===== */
-.center {
-  text-align: center;
-}
-
-.middle {
-  vertical-align: middle;
-}
-
-.large {
-  font-size: 130%;
-}
-
-.small {
-  font-size: 80%;
-}
+.center { text-align: center; }
+.middle { vertical-align: middle; }
+.large { font-size: 130%; }
+.small { font-size: 80%; }
 
 /* ===== Images ===== */
 img {
@@ -275,15 +232,13 @@ blockquote {
   font-style: italic;
 }
 
-/* ===== Inverse Slides (Optional) ===== */
+/* ===== Inverse Slides ===== */
 .inverse {
   background-color: #1F2937;
   color: #FFFFFF;
 }
 
-.inverse h1, 
-.inverse h2, 
-.inverse h3 {
+.inverse h1, .inverse h2, .inverse h3 {
   color: #FFFFFF;
 }
 
@@ -295,4 +250,37 @@ blockquote {
 .inverse .custom-footer {
   background-color: #111827;
   border-top-color: #374151;
+}
+
+/* ===== PLOTLY / INTERACTIVE WIDGET FIX ===== */
+.plotly, 
+.html-widget,
+.htmlwidget {
+  max-height: 420px !important;
+  height: 420px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Container for widgets */
+.html-widget-container,
+.plotly-container {
+  max-height: 420px !important;
+  overflow: hidden !important;
+}
+
+/* Ensure plotly doesn't overflow slide */
+.remark-slide-content .plotly,
+.remark-slide-content .html-widget {
+  margin: 0 auto;
+  max-width: 95%;
+}
+
+/* Fix for plotly in two-column layout */
+.pull-left .plotly,
+.pull-left .html-widget,
+.pull-right .plotly,
+.pull-right .html-widget {
+  max-height: 350px !important;
+  height: 350px !important;
 }

@@ -27,12 +27,12 @@ knitr::opts_chunk$set(
 )
 
 library(ggplot2)
+library(plotly)
 library(reticulate)
 
 venv_path <- "python_env"
 
 if (!virtualenv_exists(venv_path)) {
-  message("Creating virtual environment...")
   tryCatch({
     virtualenv_create(venv_path)
     virtualenv_install(venv_path, packages = c("numpy", "pandas", "matplotlib"))
@@ -283,13 +283,10 @@ y1, y2 = np.sin(x), np.cos(x)
 plt.figure(figsize=(5, 4))
 plt.plot(x, y1, label='sin(x)', lw=2)
 plt.plot(x, y2, label='cos(x)', lw=2)
-plt.xlabel('X')
-plt.ylabel('Y')
+plt.xlabel('X'); plt.ylabel('Y')
 plt.title('Sine and Cosine')
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
+plt.legend(); plt.grid(True, alpha=0.3)
+plt.tight_layout(); plt.show()
 ```
 ]
 
@@ -304,13 +301,10 @@ y1, y2 = np.sin(x), np.cos(x)
 plt.figure(figsize=(5, 4))
 plt.plot(x, y1, label='sin(x)', lw=2)
 plt.plot(x, y2, label='cos(x)', lw=2)
-plt.xlabel('X')
-plt.ylabel('Y')
+plt.xlabel('X'); plt.ylabel('Y')
 plt.title('Sine and Cosine')
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
+plt.legend(); plt.grid(True, alpha=0.3)
+plt.tight_layout(); plt.show()
 ```
 ]
 
@@ -333,12 +327,10 @@ plt.figure(figsize=(5, 4))
 plt.scatter(x, y, c=colors, s=50, 
             alpha=0.6, cmap='viridis')
 plt.colorbar(label='Value')
-plt.xlabel('X')
-plt.ylabel('Y')
+plt.xlabel('X'); plt.ylabel('Y')
 plt.title('Scatter Plot')
 plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
+plt.tight_layout(); plt.show()
 ```
 ]
 
@@ -357,12 +349,10 @@ plt.figure(figsize=(5, 4))
 plt.scatter(x, y, c=colors, s=50, 
             alpha=0.6, cmap='viridis')
 plt.colorbar(label='Value')
-plt.xlabel('X')
-plt.ylabel('Y')
+plt.xlabel('X'); plt.ylabel('Y')
 plt.title('Scatter Plot')
 plt.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
+plt.tight_layout(); plt.show()
 ```
 ]
 
@@ -398,9 +388,93 @@ Finally the conclusion
 ---
 class: inverse, center, middle
 
-# Inverse Slide
+# Interactive Plots & Physics
 
-Dark theme for transitions
+---
+
+# Interactive Clustering
+
+```{r cluster, echo=FALSE, fig.height=4, fig.width=9}
+set.seed(42)
+d <- rbind(
+  data.frame(x = rnorm(50, 2, 0.8), y = rnorm(50, 2, 0.8)),
+  data.frame(x = rnorm(50, 6, 1), y = rnorm(50, 6, 1)),
+  data.frame(x = rnorm(50, 2, 0.9), y = rnorm(50, 7, 0.9))
+)
+km <- kmeans(d, 3, nstart = 20)
+d$cluster <- as.factor(km$cluster)
+
+p <- ggplot(d, aes(x, y, color = cluster)) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_color_manual(values = c("#E63946", "#457B9D", "#2A9D8F")) +
+  labs(title = "K-Means Clustering (hover to explore)", x = "X", y = "Y") +
+  theme_minimal(base_size = 12)
+
+ggplotly(p, height = 380) %>% layout(margin = list(t = 40))
+```
+
+---
+
+# Projectile Motion
+
+.pull-left[
+**Equations of Motion:**
+
+$$x(t) = v_0 \cos(\theta) \cdot t$$
+
+$$y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2}gt^2$$
+
+**Range:** $R = \frac{v_0^2 \sin(2\theta)}{g}$
+]
+
+.pull-right[
+```{r projectile, echo=FALSE, fig.height=4, fig.width=5.5}
+g <- 9.81; v0 <- 20
+df <- data.frame()
+for (th in c(30, 45, 60)) {
+  rad <- th * pi / 180
+  t <- seq(0, 2*v0*sin(rad)/g, length.out = 100)
+  df <- rbind(df, data.frame(x = v0*cos(rad)*t, 
+    y = v0*sin(rad)*t - 0.5*g*t^2, angle = paste0(th, "°")))
+}
+ggplot(df, aes(x, y, color = angle)) +
+  geom_line(size = 1.2) + scale_color_viridis_d() +
+  labs(title = "Trajectories (v₀=20m/s)", x = "Distance (m)", y = "Height (m)") +
+  theme_minimal(base_size = 11) + coord_fixed()
+```
+]
+
+---
+
+# Simple Harmonic Motion
+
+.pull-left[
+**Equation:**
+
+$$x(t) = A\cos(\omega t + \phi)$$
+
+**Angular Frequency:**
+
+$$\omega = \sqrt{\frac{k}{m}}$$
+
+**Energy:** $E = \frac{1}{2}kA^2$
+]
+
+.pull-right[
+```{r shm, echo=FALSE, fig.height=3.5, fig.width=5.5}
+t <- seq(0, 4*pi, length.out = 200)
+df <- data.frame(t = rep(t, 2),
+  y = c(cos(t), -sin(t)),
+  type = rep(c("Position", "Velocity"), each = 200))
+
+p <- ggplot(df, aes(t, y, color = type)) +
+  geom_line(size = 1) +
+  scale_color_manual(values = c("#E63946", "#457B9D")) +
+  labs(x = "Time", y = "Amplitude", color = "") +
+  theme_minimal(base_size = 10) + theme(legend.position = "bottom")
+ggplotly(p, height = 320)
+```
+]
 
 ---
 
@@ -412,6 +486,7 @@ Dark theme for transitions
 | R Code | ✓ |
 | Python | ✓ |
 | Plots | ✓ |
+| Interactive | ✓ |
 
 ---
 
@@ -419,7 +494,7 @@ Dark theme for transitions
 
 1. **Keep slides simple** - One idea per slide
 2. **Use visuals** - Charts over tables
-3. **Limit text** - Bullets, not paragraphs
+3. **Interactive plots** - Use `ggplotly(p, height = 380)`
 4. **Test math** - No blank lines around `$$`
 
 ---
