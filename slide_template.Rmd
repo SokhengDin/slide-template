@@ -1,13 +1,14 @@
 ---
-title: "Breast Cancer - Risk Analysis"
-author: "DIN Sokheng, RA Veasna"
+title: "Template Guide"
+subtitle: "Presentation Slides"
+author: "Your Name Here"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: ["default", "styles/custom.css"]
     lib_dir: libs
     nature:
-      highlightStyle: "github"
+      highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
@@ -15,7 +16,34 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  warning = FALSE, 
+  message = FALSE,
+  fig.width = 10,
+  fig.height = 5,
+  dpi = 300,
+  fig.retina = 2
+)
+
+library(ggplot2)
+library(reticulate)
+
+venv_path <- "python_env"
+
+if (!virtualenv_exists(venv_path)) {
+  message("Creating virtual environment...")
+  tryCatch({
+    virtualenv_create(venv_path)
+    virtualenv_install(venv_path, packages = c("numpy", "pandas", "matplotlib"))
+  }, error = function(e) {
+    install_python()
+    virtualenv_create(venv_path)
+    virtualenv_install(venv_path, packages = c("numpy", "pandas", "matplotlib"))
+  })
+}
+
+use_virtualenv(venv_path, required = TRUE)
 ```
 
 layout: true
@@ -25,16 +53,16 @@ layout: true
     <img src="assets/images/ensiie.png" alt="ENSIIE">
   </div>
   <div class="header-right">
-    Breast Cancer - Risk Analysis
+    Presentation Template
   </div>
 </div>
 
 <div class="custom-footer">
   <div class="footer-left">
-    <span>Project Modelisation en R</span>
+    <span>Template Documentation</span>
   </div>
   <div class="footer-center">
-    DIN Sokheng, RA Veasna
+    Your Name
   </div>
   <div class="footer-right">
     <span class="slide-number"></span>
@@ -42,92 +70,364 @@ layout: true
 </div>
 
 ---
-
 class: title-slide, center, middle
 
-# Breast Cancer
-## Risk Analysis
+# Presentation Template
+## Getting Started Guide
 
-### DIN Sokheng, RA Veasna
+### Your Name Here
 ### `r Sys.Date()`
 
 ---
 
-# Introduction
+# File Structure
 
-- Overview of breast cancer statistics
-- Risk factors and prevention  
-- Data analysis methodology
-- Key findings and conclusions
+**Project Organization:**
 
----
-
-# Data Analysis
-
-## Methods
-
-- Statistical modeling approaches
-- Machine learning techniques
-- Visualization strategies
-
-$$\mathbb{E}(Z_{n}|\mathcal{G}_{k}) = Z_{k}$$
-
----
-
-# Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```
+your-project/
+├── presentation.Rmd          # This file
+├── styles/
+│   └── custom.css            # Styling
+├── assets/
+│   └── images/               # Your logos
 ```
 
+**Note:** The `python_env/` folder is auto-created on first knit (2-3 min).
+
 ---
 
-# Slide with Plot
+# Quick Start
 
-```{r pressure, fig.height=5}
-plot(pressure, main = "Pressure vs Temperature", 
-     xlab = "Temperature", ylab = "Pressure",
-     col = "steelblue", pch = 19)
+**Step 1:** Edit YAML Header
+
+```yaml
+title: "Your Presentation Title"
+author: "Your Name"
 ```
 
+**Step 2:** Edit the `layout: true` section to change header/footer
+
+**Step 3:** Use `---` to create new slides!
+
 ---
 
-# Two Columns Example
+# Text Formatting
+
+**Bold:** `**text**` → **bold**
+
+*Italic:* `*text*` → *italic*
+
+`Code:` backticks → `inline code`
+
+---
+
+# Lists
 
 .pull-left[
-## Left Side
-
-- Point 1
-- Point 2
-- Point 3
+**Unordered:**
+- Item 1
+- Item 2
+  - Nested item
 ]
 
 .pull-right[
-## Right Side
-
-- Point A
-- Point B  
-- Point C
+**Ordered:**
+1. First item
+2. Second item
+3. Third item
 ]
 
 ---
 
-# Code Example
+# Two-Column Layout
 
-```python
-def calculate_risk(age, family_history):
-    base_risk = 0.125
-    if age > 50:
-        base_risk *= 1.5
-    if family_history:
-        base_risk *= 2.0
-    return base_risk
+.pull-left[
+## Left Column
+
+Use `.pull-left[...]`
+
+- Comparisons
+- Side-by-side content
+]
+
+.pull-right[
+## Right Column
+
+Use `.pull-right[...]`
+
+- Complementary info
+- Code + output
+]
+
+---
+
+# Math Equations
+
+**Inline:** $E = mc^2$ appears within text.
+
+.pull-left[
+**Expected Value:**
+
+$$\mathbb{E}(X) = \sum_{i=1}^{n} x_i \cdot p(x_i)$$
+]
+
+.pull-right[
+**Derivative:**
+
+$$\frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+]
+
+---
+
+# R Code Example
+
+```{r r-basic}
+numbers <- c(1, 2, 3, 4, 5)
+mean(numbers)
+sd(numbers)
 ```
 
 ---
-layout: false
+
+# R Visualization
+
+.pull-left[
+```{r r-plot, eval=FALSE}
+ggplot(mtcars, aes(x = wt, y = mpg, 
+                   color = factor(cyl))) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Weight vs MPG",
+       x = "Weight (1000 lbs)",
+       y = "MPG", color = "Cyl") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+]
+
+.pull-right[
+```{r r-plot-out, echo=FALSE, fig.height=5, fig.width=6}
+ggplot(mtcars, aes(x = wt, y = mpg, 
+                   color = factor(cyl))) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Weight vs MPG",
+       x = "Weight (1000 lbs)",
+       y = "MPG", color = "Cyl") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+]
+
+---
+
+# R Box Plot
+
+.pull-left[
+```{r r-box, eval=FALSE}
+ggplot(iris, aes(x = Species, 
+                 y = Sepal.Length, 
+                 fill = Species)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  labs(title = "Sepal Length by Species",
+       x = "Species",
+       y = "Sepal Length (cm)") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "none") +
+  scale_fill_brewer(palette = "Set2")
+```
+]
+
+.pull-right[
+```{r r-box-out, echo=FALSE, fig.height=5, fig.width=6}
+ggplot(iris, aes(x = Species, 
+                 y = Sepal.Length, 
+                 fill = Species)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  labs(title = "Sepal Length by Species",
+       x = "Species",
+       y = "Sepal Length (cm)") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "none") +
+  scale_fill_brewer(palette = "Set2")
+```
+]
+
+---
+
+# Python Code Example
+
+```{python py-basic}
+import numpy as np
+
+numbers = np.array([1, 2, 3, 4, 5])
+print(f"Mean: {numbers.mean():.2f}")
+print(f"Std Dev: {numbers.std():.2f}")
+```
+
+---
+
+# Python Visualization
+
+.pull-left[
+```{python py-plot, eval=FALSE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 100)
+y1, y2 = np.sin(x), np.cos(x)
+
+plt.figure(figsize=(5, 4))
+plt.plot(x, y1, label='sin(x)', lw=2)
+plt.plot(x, y2, label='cos(x)', lw=2)
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Sine and Cosine')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+]
+
+.pull-right[
+```{python py-plot-out, echo=FALSE, fig.height=5, fig.width=6}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 100)
+y1, y2 = np.sin(x), np.cos(x)
+
+plt.figure(figsize=(5, 4))
+plt.plot(x, y1, label='sin(x)', lw=2)
+plt.plot(x, y2, label='cos(x)', lw=2)
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Sine and Cosine')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+]
+
+---
+
+# Python Scatter Plot
+
+.pull-left[
+```{python py-scatter, eval=FALSE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+n = 100
+x = np.random.randn(n)
+y = 2 * x + np.random.randn(n)
+colors = np.random.rand(n)
+
+plt.figure(figsize=(5, 4))
+plt.scatter(x, y, c=colors, s=50, 
+            alpha=0.6, cmap='viridis')
+plt.colorbar(label='Value')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Scatter Plot')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+]
+
+.pull-right[
+```{python py-scatter-out, echo=FALSE, fig.height=5, fig.width=6}
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+n = 100
+x = np.random.randn(n)
+y = 2 * x + np.random.randn(n)
+colors = np.random.rand(n)
+
+plt.figure(figsize=(5, 4))
+plt.scatter(x, y, c=colors, s=50, 
+            alpha=0.6, cmap='viridis')
+plt.colorbar(label='Value')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Scatter Plot')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+]
+
+---
+
+# Code Chunk Options
+
+| Option | Effect |
+|--------|--------|
+| `echo=TRUE` | Show code and output |
+| `echo=FALSE` | Hide code, show output |
+| `eval=FALSE` | Show code, don't run |
+| `include=FALSE` | Run silently |
+
+---
+
+# Incremental Reveals
+
+Use `--` to reveal step by step:
+
+--
+
+First point appears
+
+--
+
+Then the second
+
+--
+
+Finally the conclusion
+
+---
+class: inverse, center, middle
+
+# Inverse Slide
+
+Dark theme for transitions
+
+---
+
+# Tables
+
+| Feature | Supported |
+|---------|-----------|
+| Math | ✓ |
+| R Code | ✓ |
+| Python | ✓ |
+| Plots | ✓ |
+
+---
+
+# Tips
+
+1. **Keep slides simple** - One idea per slide
+2. **Use visuals** - Charts over tables
+3. **Limit text** - Bullets, not paragraphs
+4. **Test math** - No blank lines around `$$`
+
+---
 class: center, middle
 
-# Questions?
+# Ready to Create?
 
-Thank you for your attention!
+Replace this content with your presentation!
+
+### Questions?
+Contact: your.email@example.com

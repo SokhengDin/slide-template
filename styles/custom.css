@@ -4,7 +4,7 @@
 .remark-slide-content {
   background-color: #FFFFFF;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  font-size: 24px;
+  font-size: 20px;  /* Reduced from 24px */
   color: #000000;
   padding: 90px 30px 90px 30px;
 }
@@ -44,23 +44,24 @@
 /* ===== Regular Content Headers ===== */
 h1 {
   color: #000000;
-  font-size: 48px;
+  font-size: 42px;  /* Reduced from 48px */
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   margin-top: 0;
 }
 
 h2 {
   color: #000000;
-  font-size: 36px;
+  font-size: 32px;  /* Reduced from 36px */
   font-weight: 600;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 h3 {
   color: #000000;
-  font-size: 28px;
+  font-size: 24px;  /* Reduced from 28px */
   font-weight: 600;
+  margin-top: 0.3em;
 }
 
 /* ===== Custom Header ===== */
@@ -157,19 +158,19 @@ h3 {
 
 /* ===== Code Blocks - Only style code input, not R output ===== */
 .remark-code-line {
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 14px;  /* Reduced from 18px */
+  line-height: 1.4;
 }
 
 /* Style only remark code blocks (code input like Python) */
 .remark-code {
   display: block;
-  padding: 20px;
+  padding: 15px;  /* Reduced from 20px */
   background-color: #1F2937;
   color: #F3F4F6;
-  border-radius: 8px;
+  border-radius: 6px;
   font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
-  font-size: 16px;
+  font-size: 13px;  /* Reduced from 16px */
   overflow-x: auto;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -180,7 +181,7 @@ h3 {
   color: #1F2937;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 90%;
+  font-size: 85%;  /* Reduced from 90% */
   font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
 }
 
